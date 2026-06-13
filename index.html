@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>How Computer Viruses Work</title>
+<title>Computer Virus Awareness</title>
 
 <style>
 *{
@@ -14,20 +14,52 @@
 }
 
 body{
-    background:#0b1220;
+    background:#070b14;
     color:white;
     overflow-x:hidden;
 }
 
-.container{
-    width:min(1100px, 92%);
-    margin:auto;
-    padding:50px 0;
+/* ===== Floating particles ===== */
+.particles{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    overflow:hidden;
 }
 
+.particle{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:rgba(147,197,253,0.25);
+    border-radius:50%;
+    animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+    10%{opacity:1;}
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+
+/* ===== Layout ===== */
+.container{
+    width:min(1100px,92%);
+    margin:auto;
+    padding:60px 0;
+}
+
+/* ===== Hero ===== */
 .hero{
     text-align:center;
-    margin-bottom:40px;
+    margin-bottom:50px;
+    animation:fadeIn 1s ease;
 }
 
 .hero h1{
@@ -37,22 +69,32 @@ body{
 
 .hero p{
     color:#cbd5e1;
-    line-height:1.6;
+    line-height:1.7;
+    max-width:750px;
+    margin:auto;
 }
 
-/* Cards */
+/* ===== Glass cards ===== */
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
-    gap:20px;
-    margin-top:30px;
+    gap:22px;
 }
 
 .card{
     background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.1);
-    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:20px;
     padding:22px;
+    backdrop-filter: blur(18px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    transition:0.3s ease;
+    animation:fadeUp 0.8s ease;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(96,165,250,0.4);
 }
 
 .card h2{
@@ -69,80 +111,65 @@ body{
     padding-left:18px;
 }
 
-/* Simulation */
-.sim-box{
-    margin-top:50px;
-    background:rgba(255,255,255,0.05);
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
-}
-
-.grid-sim{
-    display:grid;
-    grid-template-columns:repeat(5, 1fr);
-    gap:10px;
-    margin-top:20px;
-}
-
-.node{
-    background:#1f2937;
-    padding:18px;
-    border-radius:12px;
-    cursor:pointer;
-    transition:0.2s;
-    border:1px solid rgba(255,255,255,0.1);
-}
-
-.node.infected{
-    background:#ef4444;
-    color:white;
-}
-
-.node.safe{
-    background:#10b981;
-}
-
-button{
-    margin-top:20px;
-    padding:12px 20px;
-    border:none;
-    border-radius:12px;
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-    font-size:1rem;
-}
-
-button:hover{
-    background:#1d4ed8;
-}
-
-/* Antivirus */
+/* ===== Antivirus section ===== */
 .av-box{
-    margin-top:50px;
-    background:rgba(255,255,255,0.05);
+    margin-top:55px;
     padding:30px;
-    border-radius:20px;
+    border-radius:22px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(18px);
 }
 
+.av-box h2{
+    color:#60a5fa;
+    margin-bottom:10px;
+}
+
+.av-box p{
+    color:#cbd5e1;
+    line-height:1.7;
+    margin-bottom:12px;
+}
+
+.av-box ul{
+    padding-left:18px;
+    color:#dbeafe;
+    line-height:1.8;
+}
+
+/* ===== Footer ===== */
 footer{
     text-align:center;
-    margin-top:50px;
+    margin-top:60px;
     color:#94a3b8;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
+<!-- particles -->
+<div class="particles" id="particles"></div>
+
 <div class="container">
 
     <div class="hero">
         <h1>How Computer Viruses Work</h1>
         <p>
-            Learn how viruses spread, what damage they can do, and how to protect your device safely.
-            This page includes a simple simulation to visualize infection spreading.
+            Learn how malware spreads, what damage it can cause, and how to stay safe online.
+            This page is for cybersecurity awareness and education only.
         </p>
     </div>
 
@@ -151,36 +178,36 @@ footer{
         <div class="card">
             <h2>What is a Virus?</h2>
             <p>
-                A computer virus is a type of malicious software (malware) that spreads by copying itself
-                into other files or systems. It can damage files, slow down systems, or steal data.
+                A computer virus is malicious software that spreads by attaching itself to files or programs.
+                It can damage data, slow down systems, or steal information.
             </p>
         </div>
 
         <div class="card">
             <h2>How Viruses Spread</h2>
             <ul>
-                <li>Downloading infected files</li>
-                <li>Opening fake email attachments</li>
-                <li>Cracked software or cheats</li>
+                <li>Fake downloads or cracked software</li>
+                <li>Phishing emails & attachments</li>
                 <li>Malicious websites</li>
+                <li>USB or external devices</li>
             </ul>
         </div>
 
         <div class="card">
-            <h2>What Damage They Cause</h2>
+            <h2>What They Can Do</h2>
             <ul>
-                <li>Deleting or corrupting files</li>
-                <li>Stealing personal data</li>
-                <li>Slowing down your PC</li>
-                <li>Giving attackers remote access</li>
+                <li>Corrupt or delete files</li>
+                <li>Steal personal data</li>
+                <li>Slow down your device</li>
+                <li>Allow unauthorized access</li>
             </ul>
         </div>
 
         <div class="card">
             <h2>How to Stay Safe</h2>
             <ul>
-                <li>Don’t download unknown files</li>
                 <li>Avoid suspicious links</li>
+                <li>Don’t download unknown files</li>
                 <li>Keep software updated</li>
                 <li>Use antivirus protection</li>
             </ul>
@@ -188,102 +215,44 @@ footer{
 
     </div>
 
-    <!-- SIMULATION -->
-    <div class="sim-box">
-        <h2>🧪 Virus Spread Simulation (Safe Demo)</h2>
-        <p>
-            Click "Start Infection" to see how a virus can spread between connected systems.
-            (This is only a visual model — nothing harmful happens.)
-        </p>
-
-        <button onclick="startSim()">Start Infection</button>
-        <button onclick="resetSim()">Reset</button>
-
-        <div class="grid-sim" id="grid"></div>
-    </div>
-
-    <!-- ANTIVIRUS -->
+    <!-- Antivirus -->
     <div class="av-box">
         <h2>🛡️ Antivirus Protection</h2>
+
         <p>
-            Antivirus software helps detect, block, and remove malware before it can harm your system.
+            Antivirus software helps detect, block, and remove malware before it can harm your device.
         </p>
 
         <ul>
-            <li><strong>:contentReference[oaicite:2]{index=2}</strong> — Lightweight protection with real-time scanning</li>
-            <li><strong>:contentReference[oaicite:3]{index=3}</strong> — Strong malware and ransomware detection</li>
+            <li><strong>:contentReference[oaicite:0]{index=0}</strong> — Lightweight protection with real-time scanning</li>
+            <li><strong>:contentReference[oaicite:1]{index=1}</strong> — Strong malware & ransomware detection</li>
         </ul>
 
-        <p style="margin-top:10px;color:#93c5fd;">
-            Using antivirus + safe browsing habits gives the best protection.
+        <p>
+            Using antivirus software + safe browsing habits gives the strongest protection against threats.
         </p>
     </div>
 
     <footer>
-        Educational Cybersecurity Simulation • No real malware involved
+        Cybersecurity Awareness • Educational Content Only
     </footer>
 
 </div>
 
 <script>
-// build nodes
-const grid = document.getElementById("grid");
+/* floating particles */
+const container = document.getElementById("particles");
 
-let nodes = [];
+for(let i = 0; i < 60; i++){
+    const p = document.createElement("div");
+    p.classList.add("particle");
 
-for(let i=0;i<10;i++){
-    let div = document.createElement("div");
-    div.classList.add("node","safe");
-    div.innerText = "System " + (i+1);
-    grid.appendChild(div);
-    nodes.push(div);
-}
+    p.style.left = Math.random() * 100 + "%";
+    p.style.animationDuration = (4 + Math.random() * 6) + "s";
+    p.style.animationDelay = Math.random() * 5 + "s";
+    p.style.opacity = Math.random();
 
-function startSim(){
-    // infect first node
-    let infected = new Set();
-    infected.add(0);
-
-    nodes[0].classList.add("infected");
-    nodes[0].classList.remove("safe");
-
-    let steps = 0;
-
-    let interval = setInterval(()=>{
-        let newInfected = new Set(infected);
-
-        nodes.forEach((node, index)=>{
-            if(infected.has(index)){
-                // infect neighbor
-                if(index+1 < nodes.length){
-                    newInfected.add(index+1);
-                }
-                if(index-1 >= 0){
-                    newInfected.add(index-1);
-                }
-            }
-        });
-
-        infected = newInfected;
-
-        nodes.forEach((node,i)=>{
-            if(infected.has(i)){
-                node.classList.add("infected");
-                node.classList.remove("safe");
-            }
-        });
-
-        steps++;
-        if(steps > 5) clearInterval(interval);
-
-    }, 700);
-}
-
-function resetSim(){
-    nodes.forEach(n=>{
-        n.classList.remove("infected");
-        n.classList.add("safe");
-    });
+    container.appendChild(p);
 }
 </script>
 
