@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Virus Education & Safety Simulator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0b0f1a;
+        color: #e6e6e6;
+        overflow-x: hidden;
+    }
+
+    header {
+        padding: 40px;
+        text-align: center;
+        background: linear-gradient(90deg, #1f2a44, #0b0f1a);
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 2.5em;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .card {
+        background: #151c2e;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #3b82f6;
+        color: white;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: #2563eb;
+    }
+
+    .warning {
+        color: #ff4d4d;
+        font-weight: bold;
+    }
+
+    .green {
+        color: #22c55e;
+    }
+
+    #simulationBox {
+        background: black;
+        padding: 20px;
+        border-radius: 10px;
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .file {
+        padding: 5px;
+        margin: 5px;
+        background: #222;
+        border-radius: 5px;
+        display: inline-block;
+    }
+
+    .infected {
+        animation: glitch 0.3s infinite;
+        color: red;
+    }
+
+    @keyframes glitch {
+        0% { transform: translate(0,0); }
+        25% { transform: translate(2px,-2px); }
+        50% { transform: translate(-2px,2px); }
+        75% { transform: translate(2px,2px); }
+        100% { transform: translate(0,0); }
+    }
+
+    .scan-bar {
+        height: 10px;
+        width: 0%;
+        background: limegreen;
+        margin-top: 10px;
+        transition: width 2s;
+    }
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛡️ Virus Awareness & Safety Simulator</h1>
+    <p>Learn how viruses work — and how to stay protected online</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>What is a Computer Virus?</h2>
+        <p>
+            A computer virus is a type of malicious program that spreads by attaching itself to files or software.
+            It can damage files, slow down your system, steal data, or spy on activity.
+        </p>
+        <p class="warning">⚠️ Real viruses are dangerous — this site only simulates behavior for learning.</p>
+    </div>
+
+    <div class="card">
+        <h2>How Viruses Spread</h2>
+        <ul>
+            <li>Downloading unsafe files</li>
+            <li>Clicking suspicious links</li>
+            <li>Fake software installers</li>
+            <li>Email attachments from unknown senders</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>🧪 Virus Behavior Simulation (SAFE DEMO)</h2>
+        <p>Click start to simulate how a virus might "infect" files visually.</p>
+
+        <div id="simulationBox">
+            <div class="file">document.txt</div>
+            <div class="file">photo.jpg</div>
+            <div class="file">game.exe</div>
+            <div class="file">notes.docx</div>
+        </div>
+
+        <button onclick="startSimulation()">Start Simulation</button>
+        <button onclick="resetSimulation()">Reset</button>
+    </div>
+
+    <div class="card">
+        <h2>🛡️ How to Stay Safe</h2>
+        <ul>
+            <li>Keep your software updated</li>
+            <li>Don't download unknown files</li>
+            <li>Use antivirus protection</li>
+            <li>Enable firewall protection</li>
+            <li>Be careful with email links</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Recommended Antivirus Tools</h2>
+        <p>
+            Good protection software helps detect and block threats before they harm your device.
+        </p>
+
+        <p>✔ :contentReference[oaicite:2]{index=2} – Lightweight protection and real-time scanning</p>
+        <p>✔ :contentReference[oaicite:3]{index=3} – Strong malware and ransomware protection</p>
+    </div>
+
+</div>
+
+<script>
+function startSimulation() {
+    let files = document.querySelectorAll(".file");
+    
+    files.forEach((file, index) => {
+        setTimeout(() => {
+            file.classList.add("infected");
+            file.innerText = "INFECTED_" + file.innerText;
+        }, index * 500);
+    });
+
+    let box = document.getElementById("simulationBox");
+    box.style.border = "2px solid red";
+}
+
+function resetSimulation() {
+    location.reload();
+}
+</script>
+
+</body>
+</html>
