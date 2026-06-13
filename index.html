@@ -14,36 +14,36 @@
 }
 
 body{
-    background:#070b14;
+    background:#050914;
     color:white;
     overflow-x:hidden;
 }
 
-/* ===== Floating particles ===== */
-.particles{
+/* ===== Floating bubbles background ===== */
+.bubbles{
     position:fixed;
     inset:0;
     z-index:-1;
     overflow:hidden;
 }
 
-.particle{
+.bubble{
     position:absolute;
-    width:6px;
-    height:6px;
-    background:rgba(147,197,253,0.25);
+    bottom:-100px;
+    background:rgba(147,197,253,0.18);
     border-radius:50%;
-    animation:floatUp linear infinite;
+    animation:rise linear infinite;
+    filter:blur(0.5px);
 }
 
-@keyframes floatUp{
-    from{
-        transform:translateY(110vh);
+@keyframes rise{
+    0%{
+        transform:translateY(0) scale(1);
         opacity:0;
     }
     10%{opacity:1;}
-    to{
-        transform:translateY(-10vh);
+    100%{
+        transform:translateY(-120vh) scale(1.3);
         opacity:0;
     }
 }
@@ -58,72 +58,73 @@ body{
 /* ===== Hero ===== */
 .hero{
     text-align:center;
-    margin-bottom:50px;
+    margin-bottom:55px;
     animation:fadeIn 1s ease;
 }
 
 .hero h1{
-    font-size:3rem;
-    margin-bottom:10px;
+    font-size:3.2rem;
+    margin-bottom:12px;
 }
 
 .hero p{
     color:#cbd5e1;
-    line-height:1.7;
-    max-width:750px;
+    max-width:800px;
     margin:auto;
+    line-height:1.7;
 }
 
-/* ===== Glass cards ===== */
+/* ===== Cards ===== */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:22px;
 }
 
 .card{
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
-    border-radius:20px;
-    padding:22px;
-    backdrop-filter: blur(18px);
-    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    border-radius:22px;
+    padding:24px;
+    backdrop-filter: blur(20px);
+    box-shadow:0 10px 35px rgba(0,0,0,0.35);
     transition:0.3s ease;
     animation:fadeUp 0.8s ease;
 }
 
 .card:hover{
-    transform:translateY(-8px);
-    border-color:rgba(96,165,250,0.4);
+    transform:translateY(-10px);
+    border-color:rgba(96,165,250,0.5);
 }
 
 .card h2{
     color:#60a5fa;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
 .card p, .card li{
     color:#dbeafe;
-    line-height:1.7;
+    line-height:1.75;
 }
 
 .card ul{
     padding-left:18px;
 }
 
-/* ===== Antivirus section ===== */
+/* ===== Antivirus ===== */
 .av-box{
-    margin-top:55px;
-    padding:30px;
-    border-radius:22px;
+    margin-top:60px;
+    padding:32px;
+    border-radius:24px;
     background:rgba(255,255,255,0.05);
     border:1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(20px);
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
 }
 
 .av-box h2{
     color:#60a5fa;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
 .av-box p{
@@ -147,7 +148,7 @@ footer{
 
 /* ===== Animations ===== */
 @keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
+    from{opacity:0; transform:translateY(25px);}
     to{opacity:1; transform:translateY(0);}
 }
 
@@ -160,16 +161,16 @@ footer{
 
 <body>
 
-<!-- particles -->
-<div class="particles" id="particles"></div>
+<!-- bubbles background -->
+<div class="bubbles" id="bubbles"></div>
 
 <div class="container">
 
     <div class="hero">
         <h1>How Computer Viruses Work</h1>
         <p>
-            Learn how malware spreads, what damage it can cause, and how to stay safe online.
-            This page is for cybersecurity awareness and education only.
+            Learn how malware spreads, what damage it causes, and how to stay safe online.
+            This is a cybersecurity awareness page for education only.
         </p>
     </div>
 
@@ -179,35 +180,35 @@ footer{
             <h2>What is a Virus?</h2>
             <p>
                 A computer virus is malicious software that spreads by attaching itself to files or programs.
-                It can damage data, slow down systems, or steal information.
+                It can damage systems or steal information.
             </p>
         </div>
 
         <div class="card">
             <h2>How Viruses Spread</h2>
             <ul>
-                <li>Fake downloads or cracked software</li>
-                <li>Phishing emails & attachments</li>
+                <li>Fake downloads</li>
+                <li>Phishing emails</li>
                 <li>Malicious websites</li>
-                <li>USB or external devices</li>
+                <li>Cracked software</li>
             </ul>
         </div>
 
         <div class="card">
-            <h2>What They Can Do</h2>
+            <h2>What They Do</h2>
             <ul>
-                <li>Corrupt or delete files</li>
                 <li>Steal personal data</li>
-                <li>Slow down your device</li>
-                <li>Allow unauthorized access</li>
+                <li>Corrupt files</li>
+                <li>Slow down devices</li>
+                <li>Give attackers access</li>
             </ul>
         </div>
 
         <div class="card">
             <h2>How to Stay Safe</h2>
             <ul>
-                <li>Avoid suspicious links</li>
-                <li>Don’t download unknown files</li>
+                <li>Avoid unknown links</li>
+                <li>Don’t download suspicious files</li>
                 <li>Keep software updated</li>
                 <li>Use antivirus protection</li>
             </ul>
@@ -217,6 +218,7 @@ footer{
 
     <!-- Antivirus -->
     <div class="av-box">
+
         <h2>🛡️ Antivirus Protection</h2>
 
         <p>
@@ -224,13 +226,14 @@ footer{
         </p>
 
         <ul>
-            <li><strong>:contentReference[oaicite:0]{index=0}</strong> — Lightweight protection with real-time scanning</li>
-            <li><strong>:contentReference[oaicite:1]{index=1}</strong> — Strong malware & ransomware detection</li>
+            <li><strong>Avira</strong> — Lightweight protection with real-time scanning</li>
+            <li><strong>Malwarebytes</strong> — Strong malware & ransomware detection</li>
         </ul>
 
         <p>
-            Using antivirus software + safe browsing habits gives the strongest protection against threats.
+            Using antivirus software together with safe browsing habits gives the strongest protection against threats.
         </p>
+
     </div>
 
     <footer>
@@ -240,19 +243,24 @@ footer{
 </div>
 
 <script>
-/* floating particles */
-const container = document.getElementById("particles");
+/* floating bubbles */
+const bubbles = document.getElementById("bubbles");
 
-for(let i = 0; i < 60; i++){
-    const p = document.createElement("div");
-    p.classList.add("particle");
+for(let i = 0; i < 40; i++){
+    const b = document.createElement("div");
+    b.classList.add("bubble");
 
-    p.style.left = Math.random() * 100 + "%";
-    p.style.animationDuration = (4 + Math.random() * 6) + "s";
-    p.style.animationDelay = Math.random() * 5 + "s";
-    p.style.opacity = Math.random();
+    let size = Math.random() * 60 + 10;
 
-    container.appendChild(p);
+    b.style.width = size + "px";
+    b.style.height = size + "px";
+
+    b.style.left = Math.random() * 100 + "%";
+
+    b.style.animationDuration = (6 + Math.random() * 10) + "s";
+    b.style.animationDelay = Math.random() * 5 + "s";
+
+    bubbles.appendChild(b);
 }
 </script>
 
